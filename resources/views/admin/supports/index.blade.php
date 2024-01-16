@@ -23,9 +23,9 @@
         <tbody>
             @foreach ($supports as $sup)
                 <tr>
-                    <td>{{ $support->subject }}</td>
-                    <td>{{ $support->status }}</td>
-                    <td>{{ $support->body }}</td>
+                    <td>{{ $sup->subject }}</td>
+                    <td>{{ $sup->status }}</td>
+                    <td>{{ $sup->body }}</td>
                     <td>
 
                     </td>

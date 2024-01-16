@@ -20,8 +20,8 @@ class Support extends Model
     {
         $support = new self;
         $support->subject = $request['subject'];
-        $support->subject = $request['status'];
-        $support->subject = $request['body'];
+        $support->status = 'a';
+        $support->body = $request['body'];
         if (!$support->save()) {
             throw new Exception("erro ao salvar support");
         }
