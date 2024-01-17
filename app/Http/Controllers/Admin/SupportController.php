@@ -46,4 +46,33 @@ class SupportController extends Controller
             ];
         }
     }
+
+    public function show(Support $support)
+    {
+        return view('admin.supports.show', [
+            'support' => $support
+        ]);
+    }
+
+    public function update(Request $request, Support $support)
+    {
+        try {
+            $this->support->editSupport($support, $request->all());
+
+            return \redirect()->route('supports.index');
+        } catch (Exception $erro) {
+            return [
+                'erro' => $erro->getMessage(),
+                'line' => $erro->getLine(),
+                'file' => $erro->getFile(),
+            ];
+        }
+    }
+
+    public function delete(Support $support)
+    {
+        $support->delete();
+
+        return \redirect()->route('supports.index');
+    }
 }

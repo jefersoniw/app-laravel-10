@@ -18,7 +18,7 @@
             <th>assunto</th>
             <th>status</th>
             <th>descrição</th>
-            <th></th>
+            <th>Ação</th>
         </thead>
         <tbody>
             @foreach ($supports as $sup)
@@ -27,7 +27,9 @@
                     <td>{{ $sup->status }}</td>
                     <td>{{ $sup->body }}</td>
                     <td>
-
+                        <a href="{{ route('supports.show', $sup->id) }}"> Detalhes</a>
+                        |
+                        <a href="{{ route('supports.delete', $sup->id) }}"> Excluir</a>
                     </td>
                 </tr>
             @endforeach
