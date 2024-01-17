@@ -20,9 +20,10 @@ Route::get('/', [SiteController::class, 'index']);
 Route::get('/contato', [SiteController::class, 'contact']);
 
 route::group(['prefix' => 'supports'], function () {
+  route::get('/delete/{support}', [SupportController::class, 'delete'])->name('supports.delete');
   route::get('/', [SupportController::class, 'index'])->name('supports.index');
   route::get('/create', [SupportController::class, 'create'])->name('supports.create');
   route::post('/', [SupportController::class, 'store'])->name('supports.store');
   route::get('/{support}', [SupportController::class, 'show'])->name('supports.show');
-  route::put('/{support}', [SupportController::class, 'update'])->name('support.update');
+  route::put('/{support}', [SupportController::class, 'update'])->name('supports.update');
 });

@@ -11,7 +11,7 @@
 <body>
     <h1>Detalhes da dúvida {{ $support->subject }}</h1>
 
-    <form action="{{ route('support.update', $support->id) }}" method="post">
+    <form action="{{ route('supports.update', $support->id) }}" method="post">
         @method('put')
         @csrf
 

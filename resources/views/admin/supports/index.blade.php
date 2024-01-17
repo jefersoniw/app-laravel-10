@@ -28,6 +28,8 @@
                     <td>{{ $sup->body }}</td>
                     <td>
                         <a href="{{ route('supports.show', $sup->id) }}"> Detalhes</a>
+                        |
+                        <a href="{{ route('supports.delete', $sup->id) }}"> Excluir</a>
                     </td>
                 </tr>
             @endforeach

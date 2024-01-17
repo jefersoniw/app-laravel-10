@@ -68,4 +68,11 @@ class SupportController extends Controller
             ];
         }
     }
+
+    public function delete(Support $support)
+    {
+        $support->delete();
+
+        return \redirect()->route('supports.index');
+    }
 }
