@@ -46,4 +46,11 @@ class SupportController extends Controller
             ];
         }
     }
+
+    public function show(Support $support)
+    {
+        return view('admin.supports.show', [
+            'support' => $support
+        ]);
+    }
 }
