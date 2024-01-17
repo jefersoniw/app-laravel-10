@@ -28,4 +28,16 @@ class Support extends Model
 
         return $support;
     }
+
+    public function editSupport(Support $support, $request)
+    {
+        $support->subject = $request['subject'];
+        $support->status = $request['status'];
+        $support->body = $request['body'];
+        if (!$support->save()) {
+            throw new Exception("erro ao atualizar support");
+        }
+
+        return $support;
+    }
 }

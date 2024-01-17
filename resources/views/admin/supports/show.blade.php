@@ -11,14 +11,15 @@
 <body>
     <h1>Detalhes da dúvida {{ $support->subject }}</h1>
 
-    <form action="{{ route('supports.store') }}" method="post">
+    <form action="{{ route('support.update', $support->id) }}" method="post">
+        @method('put')
         @csrf
 
         <input type="text" placeholder="assunto" name="subject" value="{{ $support->subject }}">
         <input type="text" placeholder="Status" name="status" value="{{ $support->status }}" readonly>
         <textarea name="body" id="body" cols="30" rows="5" placeholder="descrição">{{ $support->body }}</textarea>
 
-        <button type="submit">Enviar</button>
+        <button type="submit">Atualizar</button>
     </form>
 </body>
 
