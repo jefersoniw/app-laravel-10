@@ -22,8 +22,8 @@ class SupportStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'subject' => 'required|string',
-            'body' => 'required|string',
+            'subject' => 'required|string|min:3|max:255|unique:supports',
+            'body' => 'required|string|min:3|max:10000',
         ];
     }
 }
