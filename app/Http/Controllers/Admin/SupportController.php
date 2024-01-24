@@ -54,7 +54,7 @@ class SupportController extends Controller
         ]);
     }
 
-    public function update(Request $request, Support $support)
+    public function update(SupportStoreRequest $request, Support $support)
     {
         try {
             $this->support->editSupport($support, $request->all());

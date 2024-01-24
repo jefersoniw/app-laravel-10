@@ -11,6 +11,16 @@
 <body>
     <h1>Detalhes da dúvida {{ $support->subject }}</h1>
 
+    @if ($errors->any())
+        @foreach ($errors->all() as $erro)
+            <li>{{ $erro }}</li>
+        @endforeach
+    @endif
+
+    <a href="{{ route('supports.index') }}">
+        [ Voltar ]
+    </a>
+
     <form action="{{ route('supports.update', $support->id) }}" method="post">
         @method('put')
         @csrf

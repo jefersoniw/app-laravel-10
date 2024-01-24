@@ -17,7 +17,9 @@
         @endforeach
     @endif
 
-    <a href="{{ route('supports.index') }}">Voltar</a>
+    <a href="{{ route('supports.index') }}">
+        [ Voltar ]
+    </a>
 
     <form action="{{ route('supports.store') }}" method="post">
         @csrf
