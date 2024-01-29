@@ -5,21 +5,22 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SupportStoreRequest;
 use App\Models\Support;
+use App\Services\SupportService;
 use Exception;
 use Illuminate\Http\Request;
 
 class SupportController extends Controller
 {
-    private $support;
+    private $service;
 
-    public function __construct(Support $support)
+    public function __construct(SupportService $service)
     {
-        $this->support = $support;
+        $this->service = $service;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $supports = $this->support->all();
+        $supports = $this->service->getAll($request->filter);
 
         return view('admin.supports.index', [
             'supports' => $supports
@@ -47,8 +48,12 @@ class SupportController extends Controller
         }
     }
 
-    public function show(Support $support)
+    public function show($id)
     {
+        if (!$support = $this->service->findOone($id)) {
+            return back();
+        }
+
         return view('admin.supports.show', [
             'support' => $support
         ]);
@@ -69,9 +74,9 @@ class SupportController extends Controller
         }
     }
 
-    public function delete(Support $support)
+    public function delete($id)
     {
-        $support->delete();
+        $this->service->delete($id);
 
         return \redirect()->route('supports.index');
     }
