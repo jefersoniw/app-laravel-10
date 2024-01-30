@@ -20,18 +20,18 @@ class SupportService
     return $this->repository->getAll($filter);
   }
 
-  public function findOone(string $id): stdClass
+  public function findOone(string $id)
   {
     return $this->repository->findOne($id);
   }
 
-  public function new(CreateSupportDTO $dto): stdClass
+  public function new(CreateSupportDTO $dto)
   {
 
     return $this->repository->new($dto);
   }
 
-  public function update(UpdateSupportDTO $dto): stdClass
+  public function update(UpdateSupportDTO $dto)
   {
 
     return $this->repository->update($dto);
