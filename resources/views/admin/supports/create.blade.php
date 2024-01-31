@@ -11,11 +11,7 @@
 <body>
     <h1>Nova dúvida</h1>
 
-    @if ($errors->any())
-        @foreach ($errors->all() as $erro)
-            <li>{{ $erro }}</li>
-        @endforeach
-    @endif
+    <x-alert />
 
     <a href="{{ route('supports.index') }}">
         [ Voltar ]
