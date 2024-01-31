@@ -11,11 +11,7 @@
 <body>
     <h1>Detalhes da dúvida {{ $support->subject }}</h1>
 
-    @if ($errors->any())
-        @foreach ($errors->all() as $erro)
-            <li>{{ $erro }}</li>
-        @endforeach
-    @endif
+    <x-alert />
 
     <a href="{{ route('supports.index') }}">
         [ Voltar ]
@@ -25,9 +21,9 @@
         @method('put')
         @csrf
 
-        <input type="text" placeholder="assunto" name="subject" value="{{ $support->subject }}">
+        <input type="text" placeholder="assunto" name="subject" value="{{ $support->subject ?? old('subject') }}">
         <input type="text" placeholder="Status" name="status" value="{{ $support->status }}" readonly>
-        <textarea name="body" id="body" cols="30" rows="5" placeholder="descrição">{{ $support->body }}</textarea>
+        <textarea name="body" id="body" cols="30" rows="5" placeholder="descrição">{{ $support->body ?? old('body') }}</textarea>
 
         <button type="submit">Atualizar</button>
     </form>
