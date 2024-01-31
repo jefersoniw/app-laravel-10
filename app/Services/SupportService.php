@@ -29,7 +29,6 @@ class SupportService
 
   public function new(CreateSupportDTO $dto)
   {
-
     return $this->repository->new($dto);
   }
 

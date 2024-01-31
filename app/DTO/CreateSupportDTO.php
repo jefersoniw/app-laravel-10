@@ -7,9 +7,9 @@ use App\Http\Requests\SupportStoreRequest;
 class CreateSupportDTO
 {
   public function __construct(
-    string $subject,
-    string $status,
-    string $body
+    public string $subject,
+    public string $status,
+    public string $body
   ) {
   }
 

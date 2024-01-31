@@ -8,10 +8,10 @@ class UpdateSupportDTO
 {
 
   public function __construct(
-    string $id,
-    string $subject,
-    string $status,
-    string $body
+    public string $id,
+    public string $subject,
+    public string $status,
+    public string $body
   ) {
   }
 

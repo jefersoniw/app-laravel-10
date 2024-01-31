@@ -38,14 +38,27 @@ class SupportEloquentORM implements SupportRepositoryInterface
 
     return (object) $support->toArray();
   }
+
   public function delete(string $id): void
   {
     $this->support->findOrFail($id)->delete();
   }
+
   public function new(CreateSupportDTO $dto): stdClass
   {
+    $support = $this->support->createSupport((array) $dto);
+
+    return (object) $support->toArray();
   }
+
   public function update(UpdateSupportDTO $dto)
   {
+    if (!$support = $this->support->find($dto->id)) {
+      return null;
+    }
+
+    $edit = $this->support->editSupport($support, (array) $dto);
+
+    return (object) $edit->toArray();
   }
 }

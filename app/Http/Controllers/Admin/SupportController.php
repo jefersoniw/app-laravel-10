@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\DTO\CreateSupportDTO;
+use App\DTO\UpdateSupportDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SupportStoreRequest;
 use App\Models\Support;
@@ -36,7 +37,7 @@ class SupportController extends Controller
     public function store(SupportStoreRequest $request)
     {
         try {
-            $this->service->new(CreateSupportDTO::makeFromRequest($request->validated()));
+            $this->service->new(CreateSupportDTO::makeFromRequest($request));
 
             return \redirect()->route('supports.index');
         } catch (Exception $erro) {
@@ -63,7 +64,7 @@ class SupportController extends Controller
     public function update(SupportStoreRequest $request, $id)
     {
         try {
-            $this->service->update($request->validated());
+            $this->service->update(UpdateSupportDTO::makeFromRequest($request));
 
             return \redirect()->route('supports.index');
         } catch (Exception $erro) {
