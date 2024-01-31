@@ -23,13 +23,13 @@
         <tbody>
             @foreach ($supports as $sup)
                 <tr>
-                    <td>{{ $sup->subject }}</td>
-                    <td>{{ $sup->status }}</td>
-                    <td>{{ $sup->body }}</td>
+                    <td>{{ $sup['subject'] }}</td>
+                    <td>{{ $sup['status'] }}</td>
+                    <td>{{ $sup['body'] }}</td>
                     <td>
-                        <a href="{{ route('supports.show', $sup->id) }}"> Detalhes</a>
+                        <a href="{{ route('supports.show', $sup['id']) }}"> Detalhes</a>
                         |
-                        <a href="{{ route('supports.delete', $sup->id) }}"> Excluir</a>
+                        <a href="{{ route('supports.delete', $sup['id']) }}"> Excluir</a>
                     </td>
                 </tr>
             @endforeach
