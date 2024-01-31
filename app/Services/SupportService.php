@@ -29,13 +29,11 @@ class SupportService
 
   public function new(CreateSupportDTO $dto)
   {
-
     return $this->repository->new($dto);
   }
 
   public function update(UpdateSupportDTO $dto)
   {
-
     return $this->repository->update($dto);
   }
 
