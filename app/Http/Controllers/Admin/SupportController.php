@@ -64,7 +64,7 @@ class SupportController extends Controller
     public function update(SupportStoreRequest $request, $id)
     {
         try {
-            $this->service->update(UpdateSupportDTO::makeFromRequest($request));
+            $this->service->update(UpdateSupportDTO::makeFromRequest($request, $id));
 
             return \redirect()->route('supports.index');
         } catch (Exception $erro) {

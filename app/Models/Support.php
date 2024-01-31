@@ -31,7 +31,6 @@ class Support extends Model
 
     public function editSupport(Support $support, $request)
     {
-        dd($support, $request);
         $support->subject = $request['subject'];
         $support->status = $request['status'];
         $support->body = $request['body'];

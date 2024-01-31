@@ -34,7 +34,6 @@ class SupportService
 
   public function update(UpdateSupportDTO $dto)
   {
-
     return $this->repository->update($dto);
   }
 
