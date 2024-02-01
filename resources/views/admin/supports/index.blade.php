@@ -35,6 +35,10 @@
             @endforeach
         </tbody>
     </table>
+
+    <div style="margin-top: 3%">
+        {{ $supports->links() }}
+    </div>
 </body>
 
 </html>

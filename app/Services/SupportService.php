@@ -17,7 +17,15 @@ class SupportService
     $this->repository = $repository;
   }
 
-  public function getAll(string $filter = null): array
+  public function paginate(
+    int $page = 1,
+    int $totalPerPage = 15,
+    string $filter = null
+  ) {
+    return $this->repository->paginate($page, $totalPerPage, $filter);
+  }
+
+  public function getAll(string $filter = null)
   {
     return $this->repository->getAll($filter);
   }
@@ -37,7 +45,7 @@ class SupportService
     return $this->repository->update($dto);
   }
 
-  public function delete(string $id): void
+  public function delete(string $id)
   {
     $this->repository->delete($id);
   }
