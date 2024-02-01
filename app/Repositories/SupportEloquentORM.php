@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\DTO\CreateSupportDTO;
 use App\DTO\UpdateSupportDTO;
 use App\Models\Support;
+use Exception;
 use stdClass;
 
 class SupportEloquentORM implements SupportRepositoryInterface
@@ -16,7 +17,7 @@ class SupportEloquentORM implements SupportRepositoryInterface
     $this->support = $support;
   }
 
-  public function getAll(string $filter = null): array
+  public function getAll(string $filter = null)
   {
     return $this->support
       ->where(function ($query) use ($filter) {
@@ -39,16 +40,21 @@ class SupportEloquentORM implements SupportRepositoryInterface
     return (object) $support->toArray();
   }
 
-  public function delete(string $id): void
+  public function delete(string $id)
   {
     $this->support->findOrFail($id)->delete();
   }
 
-  public function new(CreateSupportDTO $dto): stdClass
+  public function new(CreateSupportDTO $dto)
   {
-    $support = $this->support->createSupport((array) $dto);
+    $this->support->subject = $dto->subject;
+    $this->support->status = $dto->status;
+    $this->support->body = $dto->body;
+    if (!$this->support->save()) {
+      throw new Exception("erro ao salvar support");
+    }
 
-    return (object) $support->toArray();
+    return (object) $this->support->toArray();
   }
 
   public function update(UpdateSupportDTO $dto)
@@ -57,8 +63,13 @@ class SupportEloquentORM implements SupportRepositoryInterface
       return null;
     }
 
-    $edit = $this->support->editSupport($support, (array) $dto);
+    $support->subject = $dto->subject;
+    $support->status = $dto->status;
+    $support->body = $dto->body;
+    if (!$support->save()) {
+      throw new Exception("erro ao atualizar support");
+    }
 
-    return (object) $edit->toArray();
+    return (object) $support->toArray();
   }
 }

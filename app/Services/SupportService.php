@@ -17,7 +17,7 @@ class SupportService
     $this->repository = $repository;
   }
 
-  public function getAll(string $filter = null): array
+  public function getAll(string $filter = null)
   {
     return $this->repository->getAll($filter);
   }
@@ -37,7 +37,7 @@ class SupportService
     return $this->repository->update($dto);
   }
 
-  public function delete(string $id): void
+  public function delete(string $id)
   {
     $this->repository->delete($id);
   }
