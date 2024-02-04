@@ -21,24 +21,22 @@
             <th>Ação</th>
         </thead>
         <tbody>
-            @foreach ($supports as $sup)
+            @foreach ($supports->items() as $sup)
                 <tr>
-                    <td>{{ $sup['subject'] }}</td>
-                    <td>{{ $sup['status'] }}</td>
-                    <td>{{ $sup['body'] }}</td>
+                    <td>{{ $sup->subject }}</td>
+                    <td>{{ $sup->status }}</td>
+                    <td>{{ $sup->body }}</td>
                     <td>
-                        <a href="{{ route('supports.show', $sup['id']) }}"> Detalhes</a>
+                        <a href="{{ route('supports.show', $sup->id) }}"> Detalhes</a>
                         |
-                        <a href="{{ route('supports.delete', $sup['id']) }}"> Excluir</a>
+                        <a href="{{ route('supports.delete', $sup->id) }}"> Excluir</a>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 
-    <div style="margin-top: 3%">
-        {{ $supports->links() }}
-    </div>
+    <x-pagination :paginator="$supports" :appends="$filter" />
 </body>
 
 </html>
