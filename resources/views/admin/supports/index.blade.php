@@ -20,6 +20,7 @@
             <th>descrição</th>
             <th>Ação</th>
         </thead>
+        @dd($supports)
         <tbody>
             @foreach ($supports as $sup)
                 <tr>
