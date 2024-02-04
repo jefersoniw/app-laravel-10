@@ -27,8 +27,11 @@ class SupportController extends Controller
 
         $supports = $this->service->paginate($page, $totalPerPage, $request->filter);
 
+        $filter = ['filter' => $request->filter ?? ''];
+
         return view('admin.supports.index', [
-            'supports' => $supports
+            'supports' => $supports,
+            'filter' =>  $filter,
         ]);
     }
 
