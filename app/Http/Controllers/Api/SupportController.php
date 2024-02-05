@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\DTO\Supports\CreateSupportDTO;
+use App\DTO\Supports\UpdateSupportDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SupportStoreRequest;
 use App\Http\Resources\SupportResource;
@@ -39,12 +40,11 @@ class SupportController extends Controller
 
             return new SupportResource($support);
         } catch (Exception $erro) {
-
             return \response()->json([
                 'erro' => $erro->getMessage(),
                 'line' => $erro->getLine(),
                 'file' => $erro->getFile(),
-            ]);
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -65,9 +65,25 @@ class SupportController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(SupportStoreRequest $request, string $id)
     {
-        //
+        try {
+            $support = $this->service->update(UpdateSupportDTO::makeFromRequest($request, $id));
+
+            if (!$support) {
+                return \response()->json([
+                    'error' => 'Not Found'
+                ], Response::HTTP_NOT_FOUND);
+            }
+
+            return new SupportResource($support);
+        } catch (Exception $erro) {
+            return \response()->json([
+                'erro' => $erro->getMessage(),
+                'line' => $erro->getLine(),
+                'file' => $erro->getFile(),
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**

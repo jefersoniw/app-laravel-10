@@ -27,7 +27,7 @@ class SupportStoreRequest extends FormRequest
             'body' => 'required|string|min:3|max:10000',
         ];
 
-        if ($this->method() ==  'PUT') {
+        if ($this->method() ===  'PUT' || $this->method() ===  'PATCH') {
             $rules['subject'] = [
                 'required',
                 'string',
