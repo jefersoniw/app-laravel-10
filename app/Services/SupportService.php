@@ -29,7 +29,7 @@ class SupportService
     return $this->repository->getAll($filter);
   }
 
-  public function findOone(string $id)
+  public function findOne(string $id)
   {
     return $this->repository->findOne($id);
   }

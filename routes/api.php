@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\SupportController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+route::group(['prefix' => 'supports'], function () {
+
+    route::post('/', [SupportController::class, 'store']);
+    route::get('/{id}', [SupportController::class, 'show']);
+    route::delete('/delete/{id}', [SupportController::class, 'destroy']);
+    route::put('/{id}', [SupportController::class, 'update']);
 });
