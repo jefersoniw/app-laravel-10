@@ -58,7 +58,7 @@ class SupportController extends Controller
 
     public function show($id)
     {
-        if (!$support = $this->service->findOone($id)) {
+        if (!$support = $this->service->findOne($id)) {
             return back();
         }
 

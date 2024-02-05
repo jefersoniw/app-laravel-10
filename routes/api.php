@@ -18,4 +18,6 @@ use Illuminate\Support\Facades\Route;
 route::group(['prefix' => 'supports'], function () {
 
     route::post('/', [SupportController::class, 'store']);
+    route::get('/{id}', [SupportController::class, 'show']);
+    route::delete('/delete/{id}', [SupportController::class, 'destroy']);
 });
