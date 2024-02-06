@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 
 route::group(['prefix' => 'supports'], function () {
 
-    route::post('/', [SupportController::class, 'store']);
+    route::get('/', [SupportController::class, 'index']);
     route::get('/{id}', [SupportController::class, 'show']);
+    route::post('/', [SupportController::class, 'store']);
     route::delete('/delete/{id}', [SupportController::class, 'destroy']);
     route::put('/{id}', [SupportController::class, 'update']);
 });
