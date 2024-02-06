@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Adapters\ApiAdapter;
 use App\DTO\Supports\CreateSupportDTO;
 use App\DTO\Supports\UpdateSupportDTO;
 use App\Http\Controllers\Controller;
@@ -25,9 +26,22 @@ class SupportController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $page = $request->page ?? 1;
+        $totalPerPage = $request->per_page ?? 2;
+
+        $supports = $this
+            ->service
+            ->paginate(
+                $page,
+                $totalPerPage,
+                $request->filter
+            );
+
+        $filter = ['filter' => $request->filter ?? ''];
+
+        return ApiAdapter::toJson($supports);
     }
 
     /**
