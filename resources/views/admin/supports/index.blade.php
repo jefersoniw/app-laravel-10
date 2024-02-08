@@ -3,11 +3,13 @@
 @section('title', 'Suportes')
 
 @section('header')
-    <h1>Listagem dos Suportes</h1>
+    @include('admin.supports.partials.header', [
+        'total' => $supports->total(),
+    ])
+
 @endsection
 
 @section('content')
-    <a href="{{ route('supports.create') }}">Criar Dúvida</a>
 
     <table>
         <thead>
