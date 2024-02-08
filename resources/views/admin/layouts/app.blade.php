@@ -15,12 +15,9 @@
     <section class="container px-4 mx-auto">
 
         @yield('header')
-        <div class="content">
+        <div>
             @yield('content')
         </div>
-        <footer>
-            #default footer
-        </footer>
     </section>
 
 </body>

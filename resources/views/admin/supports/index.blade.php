@@ -11,7 +11,11 @@
 
 @section('content')
 
-    <table>
+    @include('admin.supports.partials.content', [
+        'supports' => $supports,
+    ])
+
+    {{-- <table>
         <thead>
             <th>assunto</th>
             <th>status</th>
@@ -32,7 +36,7 @@
                 </tr>
             @endforeach
         </tbody>
-    </table>
+    </table> --}}
 
     <x-pagination :paginator="$supports" :appends="$filter" />
 
