@@ -12,15 +12,14 @@
 
 <body>
 
-    <head>
+    <section class="container px-4 mx-auto">
+
         @yield('header')
-    </head>
-    <div class="content">
-        @yield('content')
-    </div>
-    <footer>
-        #default footer
-    </footer>
+        <div>
+            @yield('content')
+        </div>
+    </section>
+
 </body>
 
 </html>

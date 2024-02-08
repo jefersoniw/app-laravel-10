@@ -3,13 +3,19 @@
 @section('title', 'Suportes')
 
 @section('header')
-    <h1>Listagem dos Suportes</h1>
+    @include('admin.supports.partials.header', [
+        'total' => $supports->total(),
+    ])
+
 @endsection
 
 @section('content')
-    <a href="{{ route('supports.create') }}">Criar Dúvida</a>
 
-    <table>
+    @include('admin.supports.partials.content', [
+        'supports' => $supports,
+    ])
+
+    {{-- <table>
         <thead>
             <th>assunto</th>
             <th>status</th>
@@ -30,7 +36,7 @@
                 </tr>
             @endforeach
         </tbody>
-    </table>
+    </table> --}}
 
     <x-pagination :paginator="$supports" :appends="$filter" />
 
