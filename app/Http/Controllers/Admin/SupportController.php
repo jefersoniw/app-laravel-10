@@ -92,6 +92,6 @@ class SupportController extends Controller
 
         return \redirect()
             ->route('supports.index')
-            ->with('messages', 'Tópico apagado com sucesso!');
+            ->with('delete', 'Tópico apagado com sucesso!');
     }
 }
