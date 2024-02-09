@@ -22,7 +22,7 @@
 
                             <th scope="col"
                                 class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                Detalhes/Excluir
+                                Detalhes
                             </th>
                         </tr>
                     </thead>
@@ -49,10 +49,6 @@
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />=
                                         </svg>
-                                    </a>
-                                    <a href=""
-                                        class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg">
-                                        EXCLUIR
                                     </a>
                                 </td>
                             </tr>

@@ -45,7 +45,9 @@ class SupportController extends Controller
         try {
             $this->service->new(CreateSupportDTO::makeFromRequest($request));
 
-            return \redirect()->route('supports.index');
+            return \redirect()
+                ->route('supports.index')
+                ->with('messages', 'Tópico cadastrado com sucesso!');
         } catch (Exception $erro) {
 
             return [
@@ -72,7 +74,9 @@ class SupportController extends Controller
         try {
             $this->service->update(UpdateSupportDTO::makeFromRequest($request, $id));
 
-            return \redirect()->route('supports.index');
+            return \redirect()
+                ->route('supports.index')
+                ->with('messages', 'Tópico atualizado com sucesso!');
         } catch (Exception $erro) {
             return [
                 'erro' => $erro->getMessage(),
@@ -86,6 +90,8 @@ class SupportController extends Controller
     {
         $this->service->delete($id);
 
-        return \redirect()->route('supports.index');
+        return \redirect()
+            ->route('supports.index')
+            ->with('delete', 'Tópico apagado com sucesso!');
     }
 }
