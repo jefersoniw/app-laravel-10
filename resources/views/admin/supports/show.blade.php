@@ -26,6 +26,9 @@
         <textarea name="body" id="body" cols="30" rows="5" placeholder="descrição">{{ $support->body ?? old('body') }}</textarea>
 
         <button type="submit">Atualizar</button>
+        <a href="{{ route('supports.delete', $support->id) }}">
+            [ Excluir ]
+        </a>
     </form>
 </body>
 
