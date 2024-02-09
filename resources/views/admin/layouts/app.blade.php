@@ -12,10 +12,10 @@
 
 <body>
 
-    <section class="container px-4 mx-auto">
+    <section class="container px-4 mx-auto py-4">
 
         @yield('header')
-        <div>
+        <div class="py-4">
             @yield('content')
         </div>
     </section>
