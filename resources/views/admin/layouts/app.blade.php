@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('font-awesome-4.7.0/css/font-awesome.min.css') }} ">
+
     <title>@yield('title') - {{ config('app.name') }}</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,6 +18,9 @@
 
         @yield('header')
         <div class="py-4">
+
+            <x-messages />
+
             @yield('content')
         </div>
     </section>
