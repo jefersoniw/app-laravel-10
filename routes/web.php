@@ -42,4 +42,5 @@ Route::middleware('auth')->group(function () {
     route::put('/{support}', [SupportController::class, 'update'])->name('supports.update');
   });
 });
+
 require __DIR__ . '/auth.php';

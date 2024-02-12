@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\SupportController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,11 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-route::group(['prefix' => 'supports'], function () {
+route::post('/login', [AuthController::class, 'auth']);
 
-    route::get('/', [SupportController::class, 'index']);
-    route::get('/{id}', [SupportController::class, 'show']);
-    route::post('/', [SupportController::class, 'store']);
-    route::delete('/delete/{id}', [SupportController::class, 'destroy']);
-    route::put('/{id}', [SupportController::class, 'update']);
+route::middleware(['auth:sanctum'])->group(function () {
+
+    route::get('/logout', [AuthController::class, 'logout']);
+    route::get('/me', [AuthController::class, 'me']);
+
+    route::group(['prefix' => 'supports'], function () {
+        route::get('/', [SupportController::class, 'index']);
+        route::get('/{id}', [SupportController::class, 'show']);
+        route::post('/', [SupportController::class, 'store']);
+        route::delete('/delete/{id}', [SupportController::class, 'destroy']);
+        route::put('/{id}', [SupportController::class, 'update']);
+    });
 });
