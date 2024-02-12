@@ -29,7 +29,7 @@ class SupportController extends Controller
     public function index(Request $request)
     {
         $page = $request->page ?? 1;
-        $totalPerPage = $request->per_page ?? 2;
+        $totalPerPage = $request->per_page ?? 5;
 
         $supports = $this
             ->service
