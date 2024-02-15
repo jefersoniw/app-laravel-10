@@ -14,6 +14,7 @@ class Support extends Model
     use HasFactory, HasUuids;
     protected $table = 'supports';
     protected $fillable = [
+        'user_id',
         'subject',
         'status',
         'body',
@@ -24,5 +25,15 @@ class Support extends Model
         return Attribute::make(
             set: fn (SupportStatus $status) => $status->name,
         );
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(ReplySupport::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
