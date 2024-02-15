@@ -13,7 +13,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('supports', function (Blueprint $table) {
-            $table->id();
+            // $table->id();
+            $table->uuid('id')->primary();
+            $table->foreignUuid('user_id')->constrained('users', 'id');
             $table->string('subject');
             $table->enum('status', array_column(SupportStatus::cases(), 'name'));
             $table->text('body');
