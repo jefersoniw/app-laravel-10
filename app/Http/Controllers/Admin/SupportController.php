@@ -69,6 +69,17 @@ class SupportController extends Controller
         ]);
     }
 
+    public function edit($id)
+    {
+        if (!$support = $this->service->findOne($id)) {
+            return back();
+        }
+
+        return view('admin.supports.edit', [
+            'support' => $support
+        ]);
+    }
+
     public function update(SupportStoreRequest $request, $id)
     {
         try {
