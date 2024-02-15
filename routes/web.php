@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ReplySupportController;
 use App\Http\Controllers\Admin\SupportController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Site\SiteController;
@@ -34,11 +35,14 @@ Route::middleware('auth')->group(function () {
   Route::get('/contato', [SiteController::class, 'contact']);
 
   route::group(['prefix' => 'supports'], function () {
+
+    route::get('/{id}/replies', [ReplySupportController::class, 'index'])->name('replies.index');
+
     route::get('/delete/{support}', [SupportController::class, 'delete'])->name('supports.delete');
     route::get('/', [SupportController::class, 'index'])->name('supports.index');
     route::get('/create', [SupportController::class, 'create'])->name('supports.create');
     route::post('/', [SupportController::class, 'store'])->name('supports.store');
-    route::get('/{support}', [SupportController::class, 'show'])->name('supports.show');
+    route::get('/support/edit/{id}', [SupportController::class, 'edit'])->name('supports.edit');
     route::put('/{support}', [SupportController::class, 'update'])->name('supports.update');
   });
 });

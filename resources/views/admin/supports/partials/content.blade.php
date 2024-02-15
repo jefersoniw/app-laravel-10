@@ -22,7 +22,7 @@
 
                             <th scope="col"
                                 class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                Detalhes
+                                Ações
                             </th>
                         </tr>
                     </thead>
@@ -38,8 +38,11 @@
                                 <td class="px-4 py-2 text-sm whitespace-nowrap text-gray-500 dark:text-gray-400">
                                     {{ $support->body }}
                                 </td>
-                                <td class="px-4 py-2 text-sm whitespace-nowrap">
-                                    <a href="{{ route('supports.show', $support->id) }}"
+                                <td class="px-4 py-2 text-sm whitespace-nowrap flex">
+                                    <a href="{{ route('supports.edit', $support->id) }}"
+                                        class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg">Editar</a>
+
+                                    <a href="{{ route('replies.index', $support->id) }}"
                                         class="px-1 py-1 text-gray-500 transition-colors duration-200 rounded-lg">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
