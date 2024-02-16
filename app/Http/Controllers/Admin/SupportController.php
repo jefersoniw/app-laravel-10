@@ -6,7 +6,6 @@ use App\DTO\Supports\CreateSupportDTO;
 use App\DTO\Supports\UpdateSupportDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SupportStoreRequest;
-use App\Models\Support;
 use App\Services\SupportService;
 use Exception;
 use Illuminate\Http\Request;
