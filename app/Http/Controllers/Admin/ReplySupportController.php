@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Services\ReplySupportService;
 use App\Services\SupportService;
 use Illuminate\Http\Request;
 
@@ -10,10 +11,14 @@ class ReplySupportController extends Controller
 {
 
     protected $service;
+    protected $replyService;
 
-    public function __construct(SupportService $service)
-    {
+    public function __construct(
+        SupportService $service,
+        ReplySupportService $replyService
+    ) {
         $this->service = $service;
+        $this->replyService = $replyService;
     }
 
     public function index($id)
