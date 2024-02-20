@@ -23,8 +23,11 @@ class ReplySupportController extends Controller
             return back();
         }
 
+        $replies = $this->replyService->getAllBySupportId($id);
+
         return view('admin.supports.replies.replies', [
-            'support' => $support
+            'support' => $support,
+            'replies' => $replies,
         ]);
     }
 }
