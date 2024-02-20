@@ -39,7 +39,7 @@
                         <div class="flex justify justify-between">
                             <div class="flex gap-2">
                                 <div class="w-7 h-7 text-center rounded-full bg-red-500">CF</div>
-                                <span>{{ $reply['user_id'] }}</span>
+                                <span>{{ $reply['user']['name'] }}</span>
                             </div>
                         </div>
 
