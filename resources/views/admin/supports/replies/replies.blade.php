@@ -49,16 +49,14 @@
 
                         <div class="flex justify-between">
                             <span>{{ $reply['created_at'] }}</span>
-                            @can('owner', $reply['user_id'])
-                                <form action="" method="post">
-                                    @csrf()
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        class="bg-red-500 hover:bg-red-400 text-white py-1 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">Deletar</button>
-                                </form>
-                            @else
-                                --
-                            @endcan
+
+                            <form action="" method="post">
+                                @csrf()
+                                @method('DELETE')
+                                <button type="submit"
+                                    class="bg-red-500 hover:bg-red-400 text-white py-1 px-4 border-b-4 border-red-700 hover:border-red-500 rounded">Deletar</button>
+                            </form>
+
                         </div>
                     </div>
                 @empty
