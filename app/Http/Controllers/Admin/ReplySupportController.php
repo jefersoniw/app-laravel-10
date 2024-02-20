@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\DTO\Replies\CreateReplyDTO;
 use App\Http\Controllers\Controller;
 use App\Services\ReplySupportService;
 use App\Services\SupportService;
+use Exception;
 use Illuminate\Http\Request;
 
 class ReplySupportController extends Controller
@@ -23,8 +25,29 @@ class ReplySupportController extends Controller
             return back();
         }
 
+        $replies = $this->replyService->getAllBySupportId($id);
+
         return view('admin.supports.replies.replies', [
-            'support' => $support
+            'support' => $support,
+            'replies' => $replies,
         ]);
+    }
+
+    public function store(Request $request)
+    {
+        try {
+            $this->replyService->createNew(CreateReplyDTO::makeFromRequest($request));
+
+            return \redirect()
+                ->route('replies.index', $request->support_id)
+                ->with('messages', 'Resposta cadastrada com sucesso!');
+        } catch (Exception $erro) {
+
+            return [
+                'erro' => $erro->getMessage(),
+                'line' => $erro->getLine(),
+                'file' => $erro->getFile(),
+            ];
+        }
     }
 }

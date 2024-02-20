@@ -19,7 +19,11 @@ class ReplySupportEloquentORM implements ReplyRepositoryInterface
   public function getAllBySupportId(string $supportId): array
   {
 
-    $replies = $this->replySupport->where('support_id', $supportId)->get();
+    $replies = $this
+      ->replySupport
+      ->with('user', 'support')
+      ->where('support_id', $supportId)
+      ->get();
 
     return $replies->toArray();
   }
