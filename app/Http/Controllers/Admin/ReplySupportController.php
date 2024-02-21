@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DTO\Replies\CreateReplyDTO;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreReplySupport;
 use App\Services\ReplySupportService;
 use App\Services\SupportService;
 use Exception;
@@ -33,7 +34,7 @@ class ReplySupportController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreReplySupport $request)
     {
         try {
             $this->replyService->createNew(CreateReplyDTO::makeFromRequest($request));
