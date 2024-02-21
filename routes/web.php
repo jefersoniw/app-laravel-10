@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
 
   route::group(['prefix' => 'supports'], function () {
 
+    route::delete('/{supportId}/replies/{id}', [ReplySupportController::class, 'destroy'])->name('replies.delete');
     route::post('/{id}/replies', [ReplySupportController::class, 'store'])->name('replies.store');
     route::get('/{id}/replies', [ReplySupportController::class, 'index'])->name('replies.index');
 

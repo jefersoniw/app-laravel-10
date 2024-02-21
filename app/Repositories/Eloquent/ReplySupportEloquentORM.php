@@ -39,4 +39,13 @@ class ReplySupportEloquentORM implements ReplyRepositoryInterface
 
     return (object) $this->replySupport->toArray();
   }
+
+  public function delete(string $id): bool
+  {
+    if (!$reply = $this->replySupport->find($id)) {
+      return false;
+    }
+
+    return (bool) $reply->delete();
+  }
 }

@@ -3,6 +3,7 @@
 @section('title', "Detalhes da Dúvida {$support->subject}")
 
 @section('content')
+    <x-alert />
     <!-- component -->
     <div class="flex justify-center min-h-screen">
         <div class="md:w-3/5 w-3/4 px-10 flex flex-col gap-2 p-5">
@@ -50,7 +51,9 @@
                         <div class="flex justify-between">
                             <span>{{ $reply['created_at'] }}</span>
 
-                            <form action="" method="post">
+                            <form
+                                action="{{ route('replies.delete', ['supportId' => $support->id, 'id' => $reply['id']]) }}"
+                                method="post">
                                 @csrf()
                                 @method('DELETE')
                                 <button type="submit"
