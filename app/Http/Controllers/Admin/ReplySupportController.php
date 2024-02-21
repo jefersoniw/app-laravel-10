@@ -50,4 +50,13 @@ class ReplySupportController extends Controller
             ];
         }
     }
+
+    public function destroy(string $supportId, string $id)
+    {
+        $this->replyService->delete($id);
+
+        return \redirect()
+            ->route('replies.index', $supportId)
+            ->with('delete', 'Resposta apagada com sucesso!');
+    }
 }

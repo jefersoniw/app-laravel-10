@@ -50,7 +50,9 @@
                         <div class="flex justify-between">
                             <span>{{ $reply['created_at'] }}</span>
 
-                            <form action="" method="post">
+                            <form
+                                action="{{ route('replies.delete', ['supportId' => $support->id, 'id' => $reply['id']]) }}"
+                                method="post">
                                 @csrf()
                                 @method('DELETE')
                                 <button type="submit"
