@@ -5,6 +5,8 @@ namespace App\Services;
 use App\DTO\Supports\CreateSupportDTO;
 use App\DTO\Supports\UpdateSupportDTO;
 use App\Repositories\Contracts\SupportRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class SupportService
 {
