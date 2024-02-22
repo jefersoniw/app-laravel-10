@@ -7,6 +7,7 @@ use App\Models\ReplySupport;
 use App\Repositories\Contracts\ReplyRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use stdClass;
 
 class ReplySupportEloquentORM implements ReplyRepositoryInterface
@@ -44,6 +45,10 @@ class ReplySupportEloquentORM implements ReplyRepositoryInterface
   {
     if (!$reply = $this->replySupport->find($id)) {
       return false;
+    }
+
+    if (Gate::denies('owner', $reply->user->id)) {
+      \abort('403', 'Not Authorized!');
     }
 
     return (bool) $reply->delete();

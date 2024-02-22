@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
     route::post('/{id}/replies', [ReplySupportController::class, 'store'])->name('replies.store');
     route::get('/{id}/replies', [ReplySupportController::class, 'index'])->name('replies.index');
 
-    route::get('/delete/{support}', [SupportController::class, 'delete'])->name('supports.delete');
+    route::delete('/delete/{id}', [SupportController::class, 'delete'])->name('supports.delete');
     route::get('/', [SupportController::class, 'index'])->name('supports.index');
     route::get('/create', [SupportController::class, 'create'])->name('supports.create');
     route::post('/', [SupportController::class, 'store'])->name('supports.store');
