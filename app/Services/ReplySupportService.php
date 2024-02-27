@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\DTO\Replies\CreateReplyDTO;
+use App\Events\SupportRepliedEvent;
 use App\Repositories\Contracts\ReplyRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,11 @@ class ReplySupportService
 
   public function createNew(CreateReplyDTO $dto): stdClass
   {
-    return $this->repository->createNew($dto);
+    $reply = $this->repository->createNew($dto);
+
+    SupportRepliedEvent::dispatch($reply);
+
+    return $reply;
   }
 
   public function delete(string $id): bool
