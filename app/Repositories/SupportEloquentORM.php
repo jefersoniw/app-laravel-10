@@ -22,7 +22,12 @@ class SupportEloquentORM implements SupportRepositoryInterface
   public function paginate(int $page = 1, int $totalPerPage = 15, string $filter = null)
   {
     $result = $this->support
-      ->with('user')
+      ->with([
+        'user',
+        'replies' => function ($query) {
+          $query->orderByDesc('id');
+        }
+      ])
       ->where(function ($query) use ($filter) {
         if ($filter) {
           $query->where('subject', $filter);
