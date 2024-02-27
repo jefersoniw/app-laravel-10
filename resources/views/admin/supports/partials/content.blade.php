@@ -22,6 +22,10 @@
 
                             <th scope="col"
                                 class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                Interações</th>
+
+                            <th scope="col"
+                                class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                 Ações
                             </th>
                         </tr>
@@ -38,6 +42,19 @@
                                 <td class="px-4 py-2 text-sm whitespace-nowrap text-gray-500 dark:text-gray-400">
                                     {{ $support->body }}
                                 </td>
+
+                                <td class="px-4 py-2 text-sm whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        @foreach ($support->replies as $reply)
+                                            @if ($loop->index < 4)
+                                                <div
+                                                    class="object-cover w-6 h-6 -mx-1 border-2 border-white rounded-full dark:border-gray-700 shrink-0 bg-green-500">
+                                                    {{ getInitials($reply['user']['name']) }}</div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </td>
+
                                 <td class="px-4 py-2 text-sm whitespace-nowrap flex">
                                     @can('owner', $support->user['id'])
                                         <a href="{{ route('supports.edit', $support->id) }}"
