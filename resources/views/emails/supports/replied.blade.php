@@ -1,7 +1,7 @@
 <x-mail::message>
     # Dúvida respondida
 
-    Resposta da dúvida {{ $reply->content }}
+    O assunto da dúvida {{ $reply->support['subject'] }} foi respondida com {{ $reply->content }}
 
     <x-mail::button :url="route('replies.index', $reply->support_id)">
         Ver

@@ -38,7 +38,7 @@ class ReplySupportEloquentORM implements ReplyRepositoryInterface
       throw new Exception("erro ao salvar nova resposta");
     }
 
-    $reply = $this->replySupport->with('user')->orderByDesc('id')->first();
+    $reply = $this->replySupport->with('user', 'support')->orderByDesc('id')->first();
 
     return (object) $reply->toArray();
   }
