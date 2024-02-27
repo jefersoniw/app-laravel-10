@@ -38,7 +38,9 @@ class ReplySupportEloquentORM implements ReplyRepositoryInterface
       throw new Exception("erro ao salvar nova resposta");
     }
 
-    return (object) $this->replySupport->toArray();
+    $reply = $this->replySupport->with('user')->first();
+
+    return (object) $reply->toArray();
   }
 
   public function delete(string $id): bool
