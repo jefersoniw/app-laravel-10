@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\DTO\Supports\CreateSupportDTO;
 use App\DTO\Supports\UpdateSupportDTO;
+use App\Enums\SupportStatus;
 use App\Models\Support;
 use App\Repositories\Contracts\SupportRepositoryInterface;
 use Exception;
@@ -103,5 +104,14 @@ class SupportEloquentORM implements SupportRepositoryInterface
     }
 
     return (object) $support->toArray();
+  }
+
+  public function updateStatus(string $id, SupportStatus $status): void
+  {
+    $support = $this->support->where('id', $id)->first();
+    $support->status = $status;
+    if (!$support->save()) {
+      throw new Exception("erro ao atualizar status!");
+    }
   }
 }
