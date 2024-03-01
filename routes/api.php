@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\ReplySupportController;
 use App\Http\Controllers\Api\SupportController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,8 @@ route::middleware(['auth:sanctum'])->group(function () {
     route::get('/me', [AuthController::class, 'me']);
 
     route::group(['prefix' => 'supports'], function () {
+        route::get('/{id}/replies', [ReplySupportController::class, 'index']);
+
         route::get('/', [SupportController::class, 'index']);
         route::get('/{id}', [SupportController::class, 'show']);
         route::post('/', [SupportController::class, 'store']);

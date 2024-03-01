@@ -27,6 +27,12 @@ class ChangeStatusSupport
     {
         $reply = $event->reply();
 
-        $this->supportService->updateStatus($reply->support_id, SupportStatus::P);
+        if ($reply->support['user_id'] == auth()->user()->id) {
+
+            $this->supportService->updateStatus($reply->support_id, SupportStatus::A);
+        } else {
+
+            $this->supportService->updateStatus($reply->support_id, SupportStatus::P);
+        }
     }
 }

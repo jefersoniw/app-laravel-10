@@ -25,9 +25,7 @@ class SupportEloquentORM implements SupportRepositoryInterface
     $result = $this->support
       ->with([
         'user',
-        'replies' => function ($query) {
-          $query->orderByDesc('id');
-        }
+        'replies'
       ])
       ->where(function ($query) use ($filter) {
         if ($filter) {
