@@ -52,7 +52,7 @@ class SupportController extends Controller
         try {
             $support = $this->service->new(CreateSupportDTO::makeFromRequest($request));
 
-            return new SupportResource($support);
+            return (new SupportResource($support))->response()->setStatusCode(Response::HTTP_CREATED);
         } catch (Exception $erro) {
             return \response()->json([
                 'erro' => $erro->getMessage(),

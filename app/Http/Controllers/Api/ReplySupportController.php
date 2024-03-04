@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\DTO\Replies\CreateReplyDTO;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreReplySupport;
 use App\Http\Resources\ReplySupportResource;
 use App\Services\ReplySupportService;
 use App\Services\SupportService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -29,5 +32,32 @@ class ReplySupportController extends Controller
         $replies = $this->replyService->getAllBySupportId($id);
 
         return ReplySupportResource::collection($replies);
+    }
+
+    public function store(StoreReplySupport $request)
+    {
+        try {
+            $reply = $this->replyService->createNew(CreateReplyDTO::makeFromRequest($request));
+
+            return (new ReplySupportResource($reply))->response()->setStatusCode(Response::HTTP_CREATED);
+        } catch (Exception $erro) {
+
+            return response()->json([
+                'erro' => $erro->getMessage(),
+                'line' => $erro->getLine(),
+                'file' => $erro->getFile(),
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function destroy(string $id)
+    {
+        if (!$this->replyService->delete($id)) {
+            return response()->json([
+                'error' => 'Not Found'
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        return response()->json([], Response::HTTP_NO_CONTENT);
     }
 }
