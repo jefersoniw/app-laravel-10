@@ -34,6 +34,7 @@ class ReplySupportEloquentORM implements ReplyRepositoryInterface
     $this->replySupport->support_id = $dto->supportId;
     $this->replySupport->content = $dto->content;
     $this->replySupport->user_id = Auth::user()->id;
+
     if (!$this->replySupport->save()) {
       throw new Exception("erro ao salvar nova resposta");
     }

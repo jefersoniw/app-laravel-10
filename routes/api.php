@@ -26,6 +26,7 @@ route::middleware(['auth:sanctum'])->group(function () {
 
     route::group(['prefix' => 'supports'], function () {
         route::get('/{id}/replies', [ReplySupportController::class, 'index']);
+        route::post('/{id}/replies', [ReplySupportController::class, 'store']);
 
         route::get('/', [SupportController::class, 'index']);
         route::get('/{id}', [SupportController::class, 'show']);
