@@ -49,4 +49,15 @@ class ReplySupportController extends Controller
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
+
+    public function destroy(string $id)
+    {
+        if (!$this->replyService->delete($id)) {
+            return response()->json([
+                'error' => 'Not Found'
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        return response()->json([], Response::HTTP_NO_CONTENT);
+    }
 }

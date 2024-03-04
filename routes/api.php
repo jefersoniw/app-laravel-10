@@ -25,6 +25,7 @@ route::middleware(['auth:sanctum'])->group(function () {
     route::get('/me', [AuthController::class, 'me']);
 
     route::group(['prefix' => 'supports'], function () {
+        route::delete('/replies/{id}', [ReplySupportController::class, 'destroy']);
         route::get('/{id}/replies', [ReplySupportController::class, 'index']);
         route::post('/{id}/replies', [ReplySupportController::class, 'store']);
 
