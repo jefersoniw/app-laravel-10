@@ -39,7 +39,7 @@ class ReplySupportController extends Controller
         try {
             $reply = $this->replyService->createNew(CreateReplyDTO::makeFromRequest($request));
 
-            return new ReplySupportResource($reply);
+            return (new ReplySupportResource($reply))->response()->setStatusCode(Response::HTTP_CREATED);
         } catch (Exception $erro) {
 
             return response()->json([
